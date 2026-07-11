@@ -1,0 +1,19 @@
+services:
+  typecho:
+    image: joyqi/typecho:nightly-php7.4-apache
+    container_name: typecho-server
+    restart: always
+    environment:
+      - TYPECHO_SITE_URL=https://blog-1.shi.al
+    ports:
+      - 127.0.0.1:8080:80
+    volumes:
+      - ./data:/app/usr
+
+    networks:
+      mysql_mynet_1:
+        ipv4_address: 10.0.0.101
+
+networks:
+  mysql_mynet_1:
+    external: true
